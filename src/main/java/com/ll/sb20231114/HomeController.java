@@ -3,6 +3,7 @@ package com.ll.sb20231114;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,7 @@ import java.util.Map;
 @Controller
 // 컨트롤러 입니다.
 public class HomeController {
+    int num = 1;
 
     @GetMapping("/")
     @ResponseBody
@@ -59,12 +61,6 @@ public class HomeController {
 
     @GetMapping("/calc5")
     @ResponseBody
-    String showCalc4(
-            @RequestParam(defaultValue = "-") String a,
-            @RequestParam(defaultValue = "-") String b
-    ) {
-        return "계산 결과 : %s".formatted(a + b);
-    }
     String showCalc5(
             @RequestParam(defaultValue = "-") String a,
             @RequestParam(defaultValue = "-") String b
@@ -149,6 +145,95 @@ public class HomeController {
         }};
 
         return persons;
+    }
+    @GetMapping("/calc14")
+    @ResponseBody
+    String showCalc14() {
+        String html = "";
+
+        html += "<div>";
+        html += "<input type=\"text\" placeholder=\"내용\">";
+        html += "</div>";
+
+        return html;
+    }
+
+    @GetMapping("/calc15")
+    @ResponseBody
+    String showCalc15() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("<div>");
+        sb.append("<input type=\"text\" placeholder=\"내용\">");
+        sb.append("</div>");
+
+        return sb.toString();
+    }
+
+    @GetMapping("/calc16")
+    @ResponseBody
+    String showCalc16() {
+        String html = "<div><input type=\"text\" placeholder=\"내용\"></div>";
+
+        return html;
+    }
+
+    @GetMapping("/calc17")
+    @ResponseBody
+    String showCalc17() {
+        String html = """
+                <div>
+                    <input type="text" placeholder="내용">
+                </div>
+                """;
+
+        return html;
+    }
+
+    @GetMapping("/calc18")
+    @ResponseBody
+    String showCalc18() {
+        String html = """
+                <div>
+                    <input type="text" placeholder="내용" value="반가워요.">
+                </div>
+                """;
+
+        return html;
+    }
+
+    @GetMapping("/calc19")
+    @ResponseBody
+    String showCalc19(
+            @RequestParam(defaultValue = "") String subject,
+            @RequestParam(defaultValue = "") String content
+    ) {
+        String html = """
+                <div>
+                    <input type="text" placeholder="제목" value="%s">
+                </div>
+                <div>
+                    <input type="text" placeholder="내용" value="%s">
+                </div>
+                """.formatted(subject, content);
+
+        return html;
+    }
+    @GetMapping("/calc20")
+    String showCalc20() {
+        return "calc20";
+    }
+
+    @GetMapping("/calc21")
+    String showCalc21(Model model) {
+        model.addAttribute("v1", "안녕");
+        model.addAttribute("v2", "반가워");
+        return "calc21";
+    }
+    @GetMapping("/calc22")
+    @ResponseBody
+    int showCalc21() {
+        return num++;
     }
 }
 
