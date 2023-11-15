@@ -1,4 +1,4 @@
-<form onsubmit="submitWriteForm(this); return false;"
+<form aciton="/article/doWrite" onsubmit="submitWriteForm(this); return false;"
       style="display: flex; flex-direction: column; gap:20px; max-width:500px;">
     <input type="text" id="input-title" placeholder="제목">
     <input type="text" id="input-body" placeholder="내용">
@@ -30,6 +30,6 @@
             inputBody.focus();
             return;
         }
-        location.href = `/article/doWrite?title=${title}&body=${body}`;
+        form.submit();
     }
 </script>
