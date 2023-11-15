@@ -15,6 +15,7 @@ public class ArticleController {
 
     @GetMapping("/article/write")
     String showWrite() {
+        //조회하는경우 show 나 get (필수x)
         return "article/write";
     }
 
